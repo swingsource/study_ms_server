@@ -5,8 +5,8 @@ class Base{
         this.table = props;
     }
 
-    // 查找
-    all (){
+    // 查找所有
+    getAll (){
         return knex(this.table).select();
     }
 
