@@ -50,7 +50,18 @@ const userController = {
      */
     getAll: async function(req,res,next){
         try{
-            let userData = await User.getAll()
+            // 设置默认的参数
+            let { userType = '', username = '', password = '', phone = '', email = '', freeze = 'un', gender = 'male' } = req.body
+            let params = {
+                userType,
+                username,
+                password,
+                phone,
+                email,
+                freeze,
+                gender
+            }
+            let userData = await User.getAll(params)
             res.json({
                 code: 200,
                 msg: "操作成功",

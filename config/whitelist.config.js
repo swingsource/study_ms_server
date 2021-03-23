@@ -1,5 +1,5 @@
 const whitelist = [
-    '/api/user/getDate',
+    '/api/user/getUserList',
     '/api/user/add',
     '/api/user/login',
     '/api/user/update',

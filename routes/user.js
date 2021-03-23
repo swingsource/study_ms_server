@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
 /**
  * 获取用户列表
  */
-router.get('/getDate', function(req, res, next) {
+router.get('/getUserList', function(req, res, next) {
   userController.getAll(req, res, next)
 });
 

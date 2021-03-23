@@ -6,8 +6,16 @@ class Base{
     }
 
     // 查找所有
-    getAll (){
-        return knex(this.table).where({ freeze: 'un' }).select()
+    getAll (params) {
+        const finalParams = Object.assign(params, { freeze: 'un' })
+        // 过滤掉空值
+        Object.keys(finalParams).map(item => {
+            if (!finalParams[item]) {
+                delete finalParams[item]
+            }
+            return true
+        })
+        return knex(this.table).where(finalParams).select()
     }
 
     // 根据id查找
