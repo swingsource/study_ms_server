@@ -6,10 +6,14 @@ var cookieParser = require('cookie-parser');
 const morgan = require('morgan')
 const logger = require('./logger')
 
+const expressJwt = require('express-jwt')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
 
 var app = express();
+
+const whitelist = require('./config/whitelist.config')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +35,13 @@ app.all('*', function(req, res, next) {
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
+
+app.use(expressJwt({
+  secret: 'study_ms_moon',  // 签名的密钥 或 PublicKey
+  algorithms: ['HS256']
+}).unless({
+  path: whitelist  // 指定路径不经过 Token 解析
+}))
 
 app.use('/', indexRouter);
 app.use('/api/user', usersRouter);
