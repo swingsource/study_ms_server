@@ -1,0 +1,34 @@
+
+!!!!! #（*）   #代表必填字段 *代表类型
+!!!!! res.code    200:成功    -1:失败    500:服务器错误
+
+
+
+用户登录：
+url: /api/user/login
+method: post
+params: {
+            userType: 'user',
+            username: #(string),
+            password: #(string)
+        }
+res: {
+         "code": 200,
+         "msg": "",
+         "data": []
+     }
+
+
+用户注册
+url: /api/user/add
+method: post
+params: {
+            userType: 'user',
+            username: #(string),
+            password: #(string)
+        }
+res: {
+         "code": 200,
+         "msg": "",
+         "data": []
+     }
