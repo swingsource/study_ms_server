@@ -51,7 +51,7 @@ const userController = {
     getAll: async function(req,res,next){
         try{
             // 设置默认的参数
-            let { userType = '', username = '', password = '', phone = '', email = '', freeze = 'un', gender = 'male' } = req.body
+            let { userType = '', username = '', password = '', phone = '', email = '', freeze = 'un', gender = 'male' } = req.query
             let params = {
                 userType,
                 username,
