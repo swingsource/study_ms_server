@@ -51,7 +51,7 @@ const userController = {
     getAll: async function(req,res,next){
         try{
             // 设置默认的参数
-            let { userType = '', username = '', password = '', phone = '', email = '', freeze = 'un', gender = 'male' } = req.query
+            let { userType = '', username = '', password = '', phone = '', email = '', freeze = 'un', gender = '' } = req.query
             let params = {
                 userType,
                 username,
@@ -97,7 +97,7 @@ const userController = {
                 avatar
             }
             // 重复的数据不能添加
-            let isRepeat = await User.findOne({userType, username, password})
+            let isRepeat = await User.findOne({ userType, username, password })
             if (isRepeat.length) {
                 res.json({
                     code: -1,
@@ -127,10 +127,9 @@ const userController = {
     updateUser: async (req, res, next) => {
         try {
             // 设置默认的参数
-            let { id, username = '', password = '', phone = '', email = '', freeze = 'un', gender = 'male', motto = '' } = req.body
+            let { id, password = '', phone = '', email = '', freeze = 'un', gender = 'male', motto = '' } = req.body
             let params = {
                 id,
-                username,
                 password,
                 phone,
                 email,

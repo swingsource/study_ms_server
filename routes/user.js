@@ -73,6 +73,15 @@ router.post('/del', (req, res, next) =>{
     })
     return
   }
+  // admin用户不能删除
+  if ((req.body.id - 0) === 1) {
+    res.json({
+      code: -1,
+      msg: 'admin 用户不能删除！',
+      data: ''
+    })
+    return
+  }
   userController.delUser(req, res, next)
 })
 
