@@ -44,11 +44,8 @@ const BookController = {
                 createTime,
                 btn
             }
-            console.log('>>>>>>>>>>>>>')
-            console.log(params)
             // 判断书籍是否已经存在
             let isRepeat = await Book.findOne(params)
-            console.log('isRepeat', isRepeat)
             if (isRepeat.length) {
                 res.json({
                     code: -1,
@@ -57,7 +54,6 @@ const BookController = {
                 })
             } else {
                 let bookId = await Book.add(params)
-                console.log('bookId', bookId)
                 if (bookId.length) {
                     res.json({
                         code: 200,

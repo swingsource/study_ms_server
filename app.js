@@ -11,6 +11,9 @@ const expressJwt = require('express-jwt')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
 const booksRouter = require('./routes/book')
+const teachesRouter = require('./routes/teach')
+const chaptersRouter = require('./routes/chapter')
+const contentsRouter = require('./routes/content')
 
 var app = express();
 
@@ -47,6 +50,9 @@ app.use(expressJwt({
 app.use('/', indexRouter);
 app.use('/api/user', usersRouter);
 app.use('/api/book', booksRouter);
+app.use('/api/teach', teachesRouter);
+app.use('/api/chapter', chaptersRouter);
+app.use('/api/content', contentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
