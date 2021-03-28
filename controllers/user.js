@@ -167,7 +167,6 @@ const userController = {
         try {
             let id = req.body.id
             let num = await User.del({ id })
-            console.log(num)
             if (num) {
                 res.json({
                     code: 200,
