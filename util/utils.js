@@ -5,6 +5,20 @@ const utils = {
      * @returns {*}
      */
     listToTree: (oldArr) => {
+        // 如果不含有一级目录 则排序后返回
+        let allLevel2 = true
+        oldArr.forEach(item => {
+            if (item.parentId + '' === '0') {
+                allLevel2 = false
+            }
+        })
+        if (allLevel2) {
+            oldArr.sort((a, b) => {
+                return a.sortIndex - b.sortIndex
+            })
+            return oldArr
+        }
+        // 含有一级目录，to tree
         oldArr.forEach(element => {
             let parentId = element.parentId;
             if(parentId !== 0){
@@ -14,12 +28,21 @@ const utils = {
                             ele.children = [];
                         }
                         ele.children.push(element);
+                        // 排序
+                        ele.children.sort((a, b) => {
+                            return a.sortIndex - b.sortIndex
+                        })
+                        // ele.hasChildren = true
                     }
                 });
             }
         });
         oldArr = oldArr.filter(ele => ele.parentId === 0); //这一步是过滤，按树展开，将多余的数组剔除；
-        return oldArr;
+        // 排序
+        oldArr.sort((a, b) => {
+            return a.sortIndex - b.sortIndex
+        })
+        return oldArr
     }
 }
 

@@ -2,21 +2,6 @@ const Teach = require('../models/teach')
 
 const teachController = {
     /**
-     * 获得完整的教程，包括目录
-     * @param req
-     * @param res
-     * @param next
-     * @returns {Promise<void>}
-     */
-    // getCompleteTeach: async (req, res, next) => {
-    //     try {
-    //         let teachList = await Teach.getTeachAndChapter()
-    //     } catch (e) {
-    //         res.json({ code: 500, msg: "服务器发生错误", data: e })
-    //     }
-    // },
-
-    /**
      * 获取教程列表
      * @param req
      * @param res
@@ -26,8 +11,9 @@ const teachController = {
     getAll: async (req, res, next) => {
         try {
             // 设置默认的参数
-            let { name = '', author = '', type = '' } = req.query
+            let { id = '', name = '', author = '', type = '' } = req.query
             const params = {
+                id,
                 name,
                 author,
                 type

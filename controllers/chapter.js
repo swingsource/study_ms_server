@@ -12,7 +12,7 @@ const chapterController = {
     getChapterList: async (req, res, next) => {
         try {
             // 构造参数
-            let { teachId = '', parentId = '0' } = req.query
+            let { teachId, parentId } = req.query
             const params = {
                 teachId,
                 parentId
@@ -41,7 +41,7 @@ const chapterController = {
         try {
             // 构造参数
             let defaultTime = new Date().getTime()
-            let { teachId, parentId, name, sortIndex, createTime = defaultTime } = req.body
+            let { teachId, parentId, name, sortIndex = 0, createTime = defaultTime } = req.body
             const params = {
                 teachId,
                 parentId,
@@ -89,10 +89,11 @@ const chapterController = {
     updateChapter: async (req, res, next) => {
         try {
             // 构造参数
-            let { id, name } = req.body
+            let { id, name, sortIndex } = req.body
             const params = {
                 id,
-                name
+                name,
+                sortIndex
             }
             let chapterId = await Chapter.update(params)
             if (chapterId) {

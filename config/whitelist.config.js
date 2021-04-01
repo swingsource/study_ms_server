@@ -6,6 +6,7 @@ const whitelist = [
     '/api/book/update',
     '/api/book/del',
     '/api/teach/getTeachList',
+    '/api/teach/getCompleteTeachList',
     '/api/teach/add',
     '/api/teach/update',
     '/api/teach/del',
