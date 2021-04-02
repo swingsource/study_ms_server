@@ -17,6 +17,12 @@ const whitelist = [
     '/api/content/getContent',
     '/api/content/add',
     '/api/content/update',
+    '/api/comment/getCommentList',
+    '/api/comment/add',
+    '/api/comment/del',
+    '/api/resource/getResourceList',
+    '/api/resource/add',
+    '/api/resource/del',
 ]
 
 module.exports = whitelist
