@@ -81,4 +81,5 @@ url: /api/resource/add
 method: post
 参数：title： 资源名称。必填
       url：资源地址。必填
+      coverUrl: 资源图片。非必填
       introduction：推荐理由或资源简介。非必填

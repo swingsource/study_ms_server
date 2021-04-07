@@ -39,12 +39,13 @@ const ResourceController = {
         try {
             // 构造参数
             let defaultTime = new Date().getTime()
-            let { recommender = '游客', createTime = defaultTime, title, url, introduction = '' } = req.body
+            let { recommender = '游客', createTime = defaultTime, title, url, introduction = '', coverUrl = '' } = req.body
             const params = {
                 recommender,
                 createTime,
                 title,
                 url,
+                coverUrl,
                 introduction
             }
             // 判断资源是否已经存在
