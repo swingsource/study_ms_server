@@ -8,6 +8,9 @@ const logger = require('./logger')
 
 const expressJwt = require('express-jwt')
 
+
+const multer = require('multer')
+
 var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/user')
 const booksRouter = require('./routes/book')
@@ -19,7 +22,11 @@ const resourcesRouter = require('./routes/resource')
 
 var app = express();
 
+// 白名单
 const whitelist = require('./config/whitelist.config')
+
+//配置express的静态目录
+app.use(express.static(path.join(__dirname, 'public')))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +38,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 配置diskStorage来控制文件存储的位置以及文件名字等
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'upload')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '_' + file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
+
+// const upload = multer({ dest: 'upload' })//当前目录下建立文件夹uploads
+
+//接收上传图片请求的接口
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  //图片已经被放入到服务器里,且req也已经被upload中间件给处理好了（加上了file等信息）
+
+  //线上的也就是服务器中的图片的绝对地址
+  let url = `http://localhost:3000/api/upload/${req.file.filename}`
+  res.json({
+    code : 200,
+    data : url,
+    msg: '图片上传成功'
+  })
+})
+
+// 静态文件托管
+app.use('/api/upload', express.static(__dirname + '/upload'))
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
