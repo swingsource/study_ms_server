@@ -1,40 +1,84 @@
 
-!!!!! #（*）   #代表必填字段 *代表类型
+!!!!! #（*）   #代表必填字段   *代表类型
 !!!!! res.code    200:成功    -1:失败    500:服务器错误
 
+
+*******************************************  登录注册  ***************************************
 
 
 用户登录：
 url: /api/user/login
 method: post
-params: {
-            userType: 'user',
-            username: #(string),
-            password: #(string)
-        }
-res: {
-         "code": 200,
-         "msg": "",
-         "data": []
-     }
+参数: userType: 'user',
+      username: #(string),
+      password: #(string)
+
 
 
 用户注册
 url: /api/user/add
 method: post
-params: {
-            userType: 'user',
-            username: #(string),
-            password: #(string)
-        }
-res: {
-         "code": 200,
-         "msg": "",
-         "data": []
-     }
+参数: userType: 'user',
+      username: #(string),
+      password: #(string)
 
+
+
+*******************************************  教程相关  ***************************************
+
+获取所有教程：
+url: /api/teach/getTeachList
+method: get
+参数：type：教程类型，非必填。可选值：前端入门、前端进阶
+
+
+根据教程id获取对应的目录：
+url：/api/chapter/getChapterList
+method: get
+参数：teachId: 教程id。必填
+
+
+根据目录id获取详细内容：
+url：/api/content/getContent
+method: get
+参数：teachId: 教程id。必填
+      chapterId：目录id。必填
+
+
+根据教程id获取相关评论：
+url：/api/comment/getCommentList
+method: get
+参数：teachId: 教程id。必填
+
+
+添加评论：
+url：/api/comment/add
+method: post
+参数：teachId: 教程id。必填
+      comment: 评论内容。必填
+      creator：评论人。非必填，如果用户已登录，则传用户名
+
+
+
+
+*******************************************  书籍相关  ***************************************
 获取所有书籍：
-url: /api/book/getBookList
+url：/api/book/getBookList
 method: get
 参数：无
 
+
+
+*******************************************  资源推荐相关  ***************************************
+获取所有推荐的资源：
+url：/api/resource/getResourceList
+method: get
+参数：approval：'agree'
+
+
+添加资源：
+url: /api/resource/add
+method: post
+参数：title： 资源名称。必填
+      url：资源地址。必填
+      introduction：推荐理由或资源简介。非必填

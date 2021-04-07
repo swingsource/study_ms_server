@@ -5,9 +5,9 @@ const teachController = require('../controllers/teach')
 /**
  * 获取教程及其目录列表
  */
-router.get('/getCompleteTeachList', (req, res, next) => {
-    teachController.getCompleteTeachList(req, res, next)
-})
+// router.get('/getCompleteTeachList', (req, res, next) => {
+//     teachController.getCompleteTeachList(req, res, next)
+// })
 
 /**
  * 获取教程列表
