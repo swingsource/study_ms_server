@@ -11,10 +11,11 @@ const ResourceController = {
     getAll: async (req, res, next) => {
         try {
             // 构造参数
-            let { title = '', recommender = '' } = req.query
+            let { title = '', recommender = '', approval = '' } = req.query
             const params = {
                 title,
-                recommender
+                recommender,
+                approval
             }
             const resourceList = await Resource.getAllDim(params)
             res.json({
@@ -102,6 +103,72 @@ const ResourceController = {
                 res.json({
                     code: -1,
                     msg: '删除推荐资源失败',
+                    data: []
+                })
+            }
+        } catch (e) {
+            res.json({ code: 500, msg: "服务器发生错误", data: e })
+        }
+    },
+
+    /**
+     * 审批通过
+     * @param req
+     * @param res
+     * @param next
+     * @returns {Promise<void>}
+     */
+    agree: async (req, res, next) => {
+        try {
+            // 构造参数
+            const params = {
+                id: req.body.id,
+                approval: 'agree'
+            }
+            let num = await Resource.approve(params)
+            if (num) {
+                res.json({
+                    code: 200,
+                    msg: '审批成功',
+                    data: num
+                })
+            } else {
+                res.json({
+                    code: -1,
+                    msg: '审批失败',
+                    data: []
+                })
+            }
+        } catch (e) {
+            res.json({ code: 500, msg: "服务器发生错误", data: e })
+        }
+    },
+
+    /**
+     * 审批拒绝通过
+     * @param req
+     * @param res
+     * @param next
+     * @returns {Promise<void>}
+     */
+    reject: async (req, res, next) => {
+        try {
+            // 构造参数
+            const params = {
+                id: req.body.id,
+                approval: 'reject'
+            }
+            let num = await Resource.approve(params)
+            if (num) {
+                res.json({
+                    code: 200,
+                    msg: '审批成功',
+                    data: num
+                })
+            } else {
+                res.json({
+                    code: -1,
+                    msg: '审批失败',
                     data: []
                 })
             }

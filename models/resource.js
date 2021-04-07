@@ -13,17 +13,17 @@ class Resource extends Base {
 
     // 模糊查询
     getAllDim (params) {
-        if (params.recommender) {
-            return knex('resource')
-                .where('title', 'like', `%${params.title}%`)
-                .andWhere({ recommender: params.recommender })
-                .select()
-        } else {
-            return knex('resource')
-                .where('title', 'like', `%${params.title}%`)
-                .select()
-        }
+        return knex('resource')
+            .where('title', 'like', `%${params.title}%`)
+            .andWhere('recommender', 'like', `%${params.recommender}%`)
+            .andWhere('approval', 'like', `%${params.approval}%`)
+            .andWhere('freeze', '=', 'un')
+            .select()
+    }
 
+    // 审批
+    approve (params) {
+        return knex('resource').where({ id: params.id }).update({ approval: params.approval })
     }
 }
 
