@@ -1,5 +1,6 @@
 const whitelist = [
     '/api/user/login',
+    '/api/user/getUserList',
     '/api/user/add',
     '/api/book/getBookList',
     '/api/book/add',
@@ -22,7 +23,9 @@ const whitelist = [
     '/api/comment/del',
     '/api/resource/getResourceList',
     '/api/resource/add',
-    '/api/resource/del',
+    '/api/resource/agree',
+    '/api/resource/reject',
+    '/api/upload/**'
 ]
 
 module.exports = whitelist

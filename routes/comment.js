@@ -3,12 +3,6 @@ const router = express.Router()
 
 const CommentController = require('../controllers/comment')
 
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
-
 /**
  * 获取评论列表
  */

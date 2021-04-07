@@ -87,12 +87,13 @@ const teachController = {
     updateTeach: async (req, res, next) => {
         try {
             // 构造参数
-            let { id,  author, introduction, type } = req.body
+            let { id,  author, introduction, type, coverUrl = '' } = req.body
             const params = {
                 id,
                 author,
                 introduction,
-                type
+                type,
+                coverUrl
             }
             let num = await Teach.update(params)
             if (num) {

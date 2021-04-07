@@ -30,6 +30,14 @@ class Base{
 
     // 更改
     update (params){
+        const finalParams = Object.assign(params, { freeze: 'un' })
+        // 过滤掉空值
+        Object.keys(finalParams).map(item => {
+            if (!finalParams[item]) {
+                delete finalParams[item]
+            }
+            return true
+        })
         return knex(this.table).where({ id: params.id } ).update(params)
     }
 

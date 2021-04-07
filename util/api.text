@@ -32,3 +32,9 @@ res: {
          "msg": "",
          "data": []
      }
+
+获取所有书籍：
+url: /api/book/getBookList
+method: get
+参数：无
+

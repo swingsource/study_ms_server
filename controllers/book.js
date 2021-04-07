@@ -83,7 +83,7 @@ const BookController = {
     updateBook: async (req, res, next) => {
         try {
             // 构造参数
-            let { id, title = '', author = '', features = '', detail = '', authorIntroduce = '', chapter = '', buySelect = '', btn = ''} = req.body
+            let { id, title = '', author = '', features = '', detail = '', authorIntroduce = '', chapter = '', buySelect = '', btn = '', coverUrl = ''} = req.body
             const params = {
                 id,
                 title,
@@ -93,7 +93,8 @@ const BookController = {
                 authorIntroduce,
                 chapter,
                 buySelect,
-                btn
+                btn,
+                coverUrl
             }
             let num = await Book.update(params)
             if (num) {
