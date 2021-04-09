@@ -33,49 +33,4 @@ router.post('/add', (req, res, next) => {
     ResourceController.addResource(req, res, next)
 })
 
-/**
- * 删除推荐资源
- */
-router.post('/del', (req, res, next) => {
-    if (!req.body.id) {
-        res.json({
-            code: -1,
-            msg: 'id不能为空',
-            data: []
-        })
-        return
-    }
-    ResourceController.delResource(req, res, next)
-})
-
-/**
- * 审批通过
- */
-router.post('/agree', (req, res, next) => {
-    if (!req.body.id) {
-        res.json({
-            code: -1,
-            msg: 'id不能为空',
-            data: []
-        })
-        return
-    }
-    ResourceController.agree(req, res, next)
-})
-
-/**
- * 审批拒绝通过
- */
-router.post('/reject', (req, res, next) => {
-    if (!req.body.id) {
-        res.json({
-            code: -1,
-            msg: 'id不能为空',
-            data: []
-        })
-        return
-    }
-    ResourceController.reject(req, res, next)
-})
-
 module.exports = router;

@@ -65,35 +65,6 @@ const CommentController = {
         } catch (e) {
             res.json({ code: 500, msg: "服务器发生错误", data: e })
         }
-    },
-
-    /**
-     * 删除评论
-     * @param req
-     * @param res
-     * @param next
-     * @returns {Promise<void>}
-     */
-    del: async (req, res, next) => {
-        // 构造参数
-        let { id } = req.body
-        const params = {
-            id
-        }
-        let num = await Comment.del(params)
-        if (num) {
-            res.json({
-                code: 200,
-                msg: '删除评论成功',
-                data: num
-            })
-        } else {
-            res.json({
-                code: -1,
-                msg: '删除评论失败',
-                data: []
-            })
-        }
     }
 }
 

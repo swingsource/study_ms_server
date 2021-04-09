@@ -42,37 +42,6 @@ const userController = {
     },
 
     /**
-     * 获取用户列表
-     * @param req
-     * @param res
-     * @param next
-     * @returns {Promise<void>}
-     */
-    getAll: async function(req,res,next){
-        try{
-            // 设置默认的参数
-            let { userType = '', username = '', password = '', phone = '', email = '', freeze = 'un', gender = '' } = req.query
-            let params = {
-                userType,
-                username,
-                password,
-                phone,
-                email,
-                freeze,
-                gender
-            }
-            let userData = await User.getAll(params)
-            res.json({
-                code: 200,
-                msg: "操作成功",
-                data: userData
-            })
-        }catch(e){
-            res.json({ code: 500, msg: "服务器发生错误", data: e })
-        }
-    },
-
-    /**
      * 注册用户 / 添加用户
      * @param req
      * @param res
@@ -116,74 +85,6 @@ const userController = {
             res.json({ code: 500, msg: "服务器发生错误", data: e })
         }
     },
-
-    /**
-     * 根据id修改用户
-     * @param req
-     * @param res
-     * @param next
-     * @returns {Promise<void>}
-     */
-    updateUser: async (req, res, next) => {
-        try {
-            // 设置默认的参数
-            let { id, password = '', phone = '', email = '', freeze = 'un', gender = 'male', motto = '' } = req.body
-            let params = {
-                id,
-                password,
-                phone,
-                email,
-                freeze,
-                gender,
-                motto
-            }
-            const num = await User.update(params)
-            if (num) {
-                res.json({
-                    code: 200,
-                    msg: '修改用户成功',
-                    data: num
-                })
-            } else {
-                res.json({
-                    code: -1,
-                    msg: '修改用户失败',
-                    data: []
-                })
-            }
-        } catch (e) {
-            res.json({ code: 500, msg: "服务器发生错误", data: e })
-        }
-    },
-
-    /**
-     * 根据id删除用户
-     * @param req
-     * @param res
-     * @param next
-     * @returns {Promise<void>}
-     */
-    delUser: async (req, res, next) => {
-        try {
-            let id = req.body.id
-            let num = await User.del({ id })
-            if (num) {
-                res.json({
-                    code: 200,
-                    msg: '删除用户成功',
-                    data: num
-                })
-            } else {
-                res.json({
-                    code: -1,
-                    msg: '删除用户失败',
-                    data: []
-                })
-            }
-        } catch (e) {
-            res.json({ code: 500, msg: "服务器发生错误", data: e })
-        }
-    }
 
 }
 

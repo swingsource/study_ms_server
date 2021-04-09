@@ -34,19 +34,4 @@ router.post('/add', (req, res, next) => {
     CommentController.add(req, res, next)
 })
 
-/**
- * 删除评论
- */
-router.post('/del', (req, res, next) => {
-    if (!req.body.id) {
-        res.json({
-            code: -1,
-            msg: 'id不能为空！',
-            data: []
-        })
-        return
-    }
-    CommentController.del(req, res, next)
-})
-
 module.exports = router;
