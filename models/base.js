@@ -7,7 +7,7 @@ class Base{
 
     // 查找所有
     getAll (params) {
-        const finalParams = Object.assign(params, { freeze: 'un' })
+        const finalParams = Object.assign(params, { })
         // 过滤掉空值
         Object.keys(finalParams).map(item => {
             if (!finalParams[item]) {
@@ -30,7 +30,7 @@ class Base{
 
     // 更改
     update (params){
-        const finalParams = Object.assign(params, { freeze: 'un' })
+        const finalParams = Object.assign(params, { })
         // 过滤掉空值
         Object.keys(finalParams).map(item => {
             if (!finalParams[item]) {
@@ -43,7 +43,7 @@ class Base{
 
     // 删除
     del (params){
-        return knex(this.table).where({ id: params.id }).update({ freeze: 'had' })
+        return knex(this.table).where({ id: params.id }).del()
     }
 
 }

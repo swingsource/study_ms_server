@@ -55,11 +55,7 @@ const userController = {
             let params = {
                 userType,
                 username,
-                password,
-                phone,
-                email,
-                freeze,
-                gender
+                password
             }
             let userData = await User.getAll(params)
             res.json({
@@ -88,13 +84,7 @@ const userController = {
                 userType,
                 username,
                 password,
-                phone,
-                email,
-                createTime,
-                freeze,
-                gender,
-                motto,
-                avatar
+                createTime
             }
             // 重复的数据不能添加
             let isRepeat = await User.findOne({ userType, username, password })
